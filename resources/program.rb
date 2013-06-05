@@ -1,7 +1,7 @@
 actions :supervise
 
 attribute :name, :kind_of => String, :name_attribute => true
-attribute :directory, :kind_of => String, :required => true
+attribute :directory, :kind_of => String, :required => false
 attribute :autostart, :kind_of => [TrueClass,FalseClass], :default => true
 attribute :autorestart, :kind_of => String, :default => "unexpected"
 attribute :user, :kind_of => String, :default => "root"
