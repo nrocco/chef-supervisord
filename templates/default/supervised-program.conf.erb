@@ -1,0 +1,11 @@
+[program:<%= @name %>]
+user = <%= @user %>
+command = <%= @command %>
+<% if @directory != nil %>directory = <%= @directory %><% end %>
+<% if @environment != nil %>environment = <%= @environment %><% end %>
+autostart = <%= @autostart %>
+autorestart = <%= @autorestart %>
+startsecs = <%= @startsecs %>
+stopwaitsecs = <%= @stopwaitsecs %>
+redirect_stderr = <%= @redirect_stderr %>
+stdout_logfile = <%= @stdout_logfile %>
