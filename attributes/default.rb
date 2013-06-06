@@ -17,7 +17,7 @@ default['supervisord']['globals']['nocleanup'] = nil
 default['supervisord']['globals']['strip_ansi'] = nil
 default['supervisord']['globals']['environment'] = nil
 
-default['supervisord']['unix_http_server']['file'] = '/var/run/supervisor.lock'
+default['supervisord']['unix_http_server']['file'] = '/var/run/supervisor.sock'
 default['supervisord']['unix_http_server']['chmod'] = '0700'
 default['supervisord']['unix_http_server']['chown'] = nil
 default['supervisord']['unix_http_server']['username'] = nil
