@@ -29,6 +29,13 @@ globals = (globals unless globals.map { |k,v| not v.nil? }.select { |a| a }.empt
 supervisorctl = node['supervisord']['supervisorctl'].select { |k,v| k unless v.nil? }
 supervisorctl = (supervisorctl unless supervisorctl.map { |k,v| not v.nil? }.select { |a| a }.empty?)
 
+template "/etc/defaults/supervisor" do
+  source "supervisord.default.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 template "#{node["supervisord"]["conf_dir"]}/supervisord.conf" do
   source "supervisord.conf.erb"
   owner "root"

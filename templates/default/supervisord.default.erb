@@ -1,0 +1,11 @@
+# Defaults for supervisor initscript
+# sourced by /etc/init.d/supervisor
+# installed at /etc/default/supervisor by the maintainer scripts
+
+#
+# This is a POSIX shell fragment
+#
+PIDFILE=<%= node['supervisord']['globals']['pidfile'] %>
+
+# Additional options that are passed to the Daemon.
+DAEMON_OPTS="-c #{node["supervisord"]["conf_dir"]}/supervisord.conf ${node["supervisord"]["daemon_opts"]}"

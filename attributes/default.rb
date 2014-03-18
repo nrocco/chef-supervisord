@@ -1,5 +1,11 @@
 default['supervisord']['conf_dir'] = '/etc/supervisor'
 
+default["supervisord"]["daemon_opts"] = ""
+
+default['supervisord']['included_files'] = [
+    "#{node['supervisord']['conf_dir']}/conf.d/*.conf"
+]
+
 default['supervisord']['globals']['logfile'] = '/var/log/supervisor/supervisord.log'
 default['supervisord']['globals']['pidfile'] = '/var/run/supervisord.pid'
 default['supervisord']['globals']['childlogdir'] = '/var/log/supervisor'
