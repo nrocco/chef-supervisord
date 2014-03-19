@@ -8,4 +8,4 @@
 PIDFILE=<%= node['supervisord']['globals']['pidfile'] %>
 
 # Additional options that are passed to the Daemon.
-DAEMON_OPTS="-c #{node["supervisord"]["conf_dir"]}/supervisord.conf ${node["supervisord"]["daemon_opts"]}"
+DAEMON_OPTS="-c <%= "#{node["supervisord"]["conf_dir"]}/supervisord.conf" %> <%= node["supervisord"]["daemon_opts"] %>"
