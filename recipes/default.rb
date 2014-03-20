@@ -9,12 +9,14 @@
 
 package "supervisor" do
   action :install
+
+  notifies :stop, "service[supervisor]", :immediately
 end
 
 service "supervisor" do
   supports :status => true, :restart => false, :reload => true
   reload_command "supervisorctl update"
-  action [ :enable, :start ]
+  action :enable
 end
 
 unix_http_server = node['supervisord']['unix_http_server'].select { |k,v| k unless v.nil? }
@@ -34,6 +36,9 @@ template "/etc/default/supervisor" do
   owner "root"
   group "root"
   mode 0644
+
+  notifies :stop, "service[supervisor]", :immediately
+  notifies :start, "service[supervisor]", :delayed
 end
 
 template "#{node["supervisord"]["conf_dir"]}/supervisord.conf" do
