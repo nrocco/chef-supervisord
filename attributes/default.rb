@@ -1,9 +1,9 @@
 default['supervisord']['conf_dir'] = '/etc/supervisor'
 
-default["supervisord"]["daemon_opts"] = ""
+default['supervisord']['daemon_opts'] = ''
 
 default['supervisord']['included_files'] = [
-    "#{node['supervisord']['conf_dir']}/conf.d/*.conf"
+  "#{node['supervisord']['conf_dir']}/conf.d/*.conf"
 ]
 
 default['supervisord']['globals']['logfile'] = '/var/log/supervisor/supervisord.log'
@@ -13,7 +13,7 @@ default['supervisord']['globals']['logfile_maxbytes'] = nil
 default['supervisord']['globals']['logfile_backups'] = nil
 default['supervisord']['globals']['loglevel'] = nil
 default['supervisord']['globals']['nodaemon'] = nil
-default['supervisord']['globals']['minfds' ] = nil
+default['supervisord']['globals']['minfds'] = nil
 default['supervisord']['globals']['minprocs'] = nil
 default['supervisord']['globals']['umask'] = nil
 default['supervisord']['globals']['user'] = nil
