@@ -14,7 +14,7 @@ package "supervisor" do
 end
 
 service "supervisor" do
-  supports :status => true, :restart => false, :reload => true
+  supports :status => true, :restart => true, :reload => true
   reload_command "supervisorctl update"
   action :enable
 end
@@ -36,6 +36,16 @@ template '/etc/default/supervisor' do
   owner 'root'
   group 'root'
   mode 0644
+
+  notifies :stop, 'service[supervisor]', :immediately
+  notifies :start, 'service[supervisor]', :delayed
+end
+
+template '/etc/init.d/supervisor' do
+  source 'supervisord.initd.erb'
+  owner 'root'
+  group 'root'
+  mode 0755
 
   notifies :stop, 'service[supervisor]', :immediately
   notifies :start, 'service[supervisor]', :delayed
