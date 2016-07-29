@@ -1,16 +1,20 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
 Vagrant.configure('2') do |config|
-  config.omnibus.chef_version = '11.16.4'
+  config.omnibus.chef_version = :latest
   config.berkshelf.enabled = true
-
-  config.vm.box = 'ubuntu1204'
-  config.vm.box_url = 'https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box'
+  config.ssh.forward_agent = true
 
   config.vm.define 'supervisord' do |box|
-    box.vm.provision :chef_solo do |chef|
+    box.vm.box = 'bento/ubuntu-16.04'
+
+    box.vm.provision :chef_zero do |chef|
+      chef.nodes_path = ''
+      chef.data_bags_path = ''
+      chef.encrypted_data_bag_secret_key_path = ''
+
       chef.run_list = [
+        'recipe[apt]',
         'recipe[supervisord]'
       ]
     end
